@@ -1,10 +1,14 @@
 package com.vehicles.project.domain;
 
 import java.util.List;
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Car extends Vehicle {
 
 	public Car(String plate, String brand, String color) {
+
 		super(plate, brand, color);
 	}
 
@@ -27,4 +31,13 @@ public class Car extends Vehicle {
 		this.wheels.add(rightWheel);
 	}
 
+	@Override
+	public String toString() {
+		return "Car {" +
+				"matricula='" + plate + '\'' +
+				", marca='" + brand + '\'' +
+				", color='" + color + '\'' +
+				", ruedas=" + wheels.toString() +
+				'}';
+	}
 }

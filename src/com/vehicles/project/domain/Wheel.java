@@ -8,4 +8,12 @@ public class Wheel {
 		this.brand = brand;
 		this.diameter = diameter;
 	}
+
+	@Override
+	public String toString() {
+		return "Wheel{" +
+				"marca='" + brand + '\'' +
+				", diametro=" + diameter +
+				'}';
+	}
 }
