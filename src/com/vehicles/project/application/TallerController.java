@@ -3,16 +3,13 @@ package com.vehicles.project.application;
 import com.vehicles.project.domain.Car;
 import com.vehicles.project.domain.Vehicle;
 import com.vehicles.project.domain.Wheel;
-import com.vehicles.project.persistence.TotalWheelsVehicle;
 import com.vehicles.project.persistence.VehiclesRepository;
 
 
 public class TallerController {
 
-
     VehiclesRepository repository;
     WheelsFactory wheelsFactory;
-
 
     public TallerController() {
 
@@ -24,7 +21,7 @@ public class TallerController {
     public void createCar(String matricula, String marca, String color) throws Exception {
         Vehicle car=new Car(matricula,marca,color);
         repository.addVehicle(car);
-        wheelsFactory.setTotalWheels(TotalWheelsVehicle.CAR.getNumWheels());
+        wheelsFactory.setTotalWheels(WheelsFactory.TotalWheelsVehicle.CAR.getNumWheels());
     }
 
     public boolean checkPlate(String matricula){
@@ -41,8 +38,8 @@ public class TallerController {
 
     public void createWheels(String marca, double diametro) throws Exception {
         Wheel wheel = new Wheel(marca,diametro);
-        wheelsFactory.addWheel(wheel,wheelsFactory.getTotalWheels());
-        wheelsFactory.addWheel(wheel, wheelsFactory.getTotalWheels());
+        wheelsFactory.addWheel(wheel);
+        wheelsFactory.addWheel(wheel);
     }
 
     public void addWheelsVehicle() throws Exception {

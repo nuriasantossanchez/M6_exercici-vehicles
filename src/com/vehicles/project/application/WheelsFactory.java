@@ -6,18 +6,26 @@ import java.util.List;
 
 public class WheelsFactory {
 
-
-
     private List<Wheel> backWheels = new ArrayList<>();
     private List<Wheel> frontWheels = new ArrayList<>();
     private int totalWheels;
 
+    enum TotalWheelsVehicle {
+        CAR(4),
+        BICKE(2);
 
-    public WheelsFactory() {
+        private int numWheels;
+
+        TotalWheelsVehicle(int numWheels) {
+            this.numWheels=numWheels;
+        }
+
+        public int getNumWheels() {
+            return numWheels;
+        }
     }
 
-    public int getTotalWheels() {
-        return totalWheels;
+    public WheelsFactory() {
     }
 
     public void setTotalWheels(int totalWheels) {
@@ -40,12 +48,14 @@ public class WheelsFactory {
     }
 
 
-    public void addWheel(Wheel wheel, int num){
-        if(backWheels.isEmpty() || backWheels.size()!=num/2){
-            backWheels.add(wheel);
-        }else if (frontWheels.isEmpty() || frontWheels.size()!=num/2){
-            frontWheels.add(wheel);
+    public void addWheel(Wheel wheel){
+        if(this.backWheels.isEmpty() || this.backWheels.size()!=this.totalWheels/2){
+            this.backWheels.add(wheel);
+        }else if (this.frontWheels.isEmpty() || this.frontWheels.size()!=this.totalWheels/2){
+            this.frontWheels.add(wheel);
         }
     }
 
 }
+
+
