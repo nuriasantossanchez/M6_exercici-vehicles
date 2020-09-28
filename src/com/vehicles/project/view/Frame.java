@@ -2,6 +2,10 @@ package com.vehicles.project.view;
 
 import javax.swing.*;
 
+/**
+ * Clase abstracta de la capa de la vista, la extienden las clases InputDataJOptionPane,
+ * ShowMessageDialog y ShowConfirmDialog
+ */
 public abstract class Frame {
 
     JFrame frame;

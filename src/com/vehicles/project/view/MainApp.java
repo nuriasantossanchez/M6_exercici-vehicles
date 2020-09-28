@@ -70,6 +70,13 @@ public class MainApp {
         System.exit(0);
     }
 
+    /**
+     * Muestra un showInputDialog parala entrada de datos del usuario, no permite blancos,
+     * si el valor devuelto es un nullo, el usuario pulsa Canselar, termina la ejecucion
+     * @param message, un String con los datos de entrada que se le solicitan al usuario
+     * @param title, un String con el tiulo de la ventana
+     * @return, un String con los datos introducidos por el usuario
+     */
     public static String getInputData(String message, String title){
         String inputData;
         do {
@@ -79,6 +86,14 @@ public class MainApp {
         return  inputData;
     }
 
+    /**
+     * Muestra un showInputDialog parala entrada de datos del usuario, no permite blancos,
+     * si el valor devuelto es un nullo, el usuario pulsa Canselar, termina la ejecucion
+     * @param message, un String con los datos de entrada que se le solicitan al usuario
+     * @param title, un String con el tiulo de la ventana
+     * @param defaultValue, un String con un valor por defecto
+     * @return, un String con los datos introducidos por el usuario
+     */
     public static String getInputData(String message, String title, String defaultValue){
         String inputData;
         do {

@@ -6,6 +6,9 @@ import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Clase abstracta de la capa de dominio, la extienden las clases Car y Bike
+ */
 public abstract class Vehicle {
 
 	protected String plate;
@@ -23,6 +26,10 @@ public abstract class Vehicle {
 		this.plate = plate;
 	}
 
+	/**
+	 * Genera un matrícula valida de numeros y letras aleatorios
+	 * @return String plate
+	 */
 	public static String generaPlate() {
 		//Letras validas para matrícula
 		char[] array = {'A', 'B', 'C',
@@ -46,6 +53,11 @@ public abstract class Vehicle {
 
 	}
 
+	/**
+	 * Chekea si una matricula es o no valida
+	 * @param plate,  String con la matricula a validar
+	 * @return true si la matricula pasada como parametro es valida, false si no es valida
+	 */
 	public static boolean checkPlate(String plate) {
 		boolean plateOk = false;
 		final String regex = "^[0-9]{1,6}[ABCDEFGHIJKLMNOPQRSTUVWXYZ]{1,6}";
