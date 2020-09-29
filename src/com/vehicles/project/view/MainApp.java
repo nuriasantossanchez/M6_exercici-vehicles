@@ -19,8 +19,8 @@ public class MainApp {
 
         do {
             inputDataMatricula= getInputData("Introduzca la matricula del vehiculo\n\n"
-                        + "Ha de tener al menos 1 numero al incio\n"
-                        + " y al menos 1 letra en la parte final",
+                        + "Ha de tener 4 numeros al incio\n"
+                        + " y 2 o 3 letra en la parte final",
                         "MATRICULA");
 
             if(!controller.checkPlate(inputDataMatricula)){
@@ -37,26 +37,38 @@ public class MainApp {
 
             inputDataBackWheelsMarca =getInputData("Introduzca la marca de las ruedas traseras","MARCA RUEDAS TRASERAS");
             inputDataBackWheelsDiametro =getInputData("Introduzca el diametro de las ruedas traseras\n\n"
-                        + "Ha de ser un numero entero o decimal","DIAMETRO RUEDAS TRASERAS","2.00");
+                        + "Ha de ser superior a 0.4 e inferior a 4","DIAMETRO RUEDAS TRASERAS","2.2");
+
+            if(!controller.checkDiameter((inputDataBackWheelsDiametro))){
+                inputDataBackWheelsDiametro="2.2";
+                new ShowMessageDialog("El diametro introducido no esta dentro del rango establecido\n"
+                        + "Se le asignara un diametro por defecto con valor de 2.2");
+            }
 
             try {
                 controller.createWheels(inputDataBackWheelsMarca, Double.parseDouble(inputDataBackWheelsDiametro));
             }catch (NumberFormatException e){
-                controller.createWheels(inputDataBackWheelsMarca, 2);
-                new ShowMessageDialog("El diametro introducido no es correcto\n"
-                        + "Se le asignara un diametro por defecto con valor de 2.00");
+                controller.createWheels(inputDataBackWheelsMarca, 2.2);
+                new ShowMessageDialog("El valor introducido no es numerico\n"
+                        + "Se le asignara un diametro por defecto con valor de 2.2");
             }
 
             inputDataFrontWheelsMarca =getInputData("Introduzca la marca de las ruedas delanteras","MARCA RUEDAS DELANTERAS");
             inputDataFrontWheelsDiametro =getInputData("Introduzca el diametro de las ruedas delanteras\n\n"
-                        +"Ha de ser un numero entero o decimal","DIAMETRO RUEDAS DELANTERAS","2.00");
+                        +"Ha de ser superior a 0.4 e inferior a 4","DIAMETRO RUEDAS DELANTERAS","2.2");
+
+            if(!controller.checkDiameter((inputDataFrontWheelsDiametro))){
+                inputDataFrontWheelsDiametro="2.2";
+                new ShowMessageDialog("El diametro introducido no esta dentro del rango establecido\n"
+                        + "Se le asignara un diametro por defecto con valor de 2.2");
+            }
 
             try {
                 controller.createWheels(inputDataFrontWheelsMarca, Double.parseDouble(inputDataFrontWheelsDiametro));
             }catch (NumberFormatException e){
-                controller.createWheels(inputDataFrontWheelsMarca, 2);
+                controller.createWheels(inputDataFrontWheelsMarca, 2.2);
                 new ShowMessageDialog("El diametro introducido no es correcto\n"
-                        + "Se le asignara un diametro por defecto con valor de 2.00");
+                        + "Se le asignara un diametro por defecto con valor de 2.2");
             }
 
             controller.addWheelsVehicle();

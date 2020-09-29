@@ -34,9 +34,9 @@ public class TallerController {
     }
 
     /**
-     * Llama al metodo checkPlate() implementado en la clase abstracta Vehicle, para ckekear si
+     * Llama al metodo staic checkPlate() implementado en la clase abstracta Vehicle, para ckekear si
      * una matricula es o no valida
-     * @param matricula
+     * @param matricula, valor a checkear
      * @return true si la matricula es valida, false si no lo es
      */
     public boolean checkPlate(String matricula){
@@ -53,7 +53,22 @@ public class TallerController {
      * @return String con la matricula generada valida
      */
     public String generaPlate() {
+
         return Vehicle.generaPlate();
+    }
+
+    /**
+     * Llama al metodo static checkDiameter implementado en la clase Wheel, para checkear si
+     * el diametro de una rueda cumple con los requisitos de tamaño mínimo y máximo establecidos
+     * @param diameter, valor a chekear
+     * @return true si el tamaños del diametro es valido, false si no lo es
+     */
+    public boolean checkDiameter(String diameter){
+        boolean diameterOk=true;
+        if(!Wheel.checkDiameter(diameter)){
+            diameterOk=false;
+        }
+        return diameterOk;
     }
 
     /**
