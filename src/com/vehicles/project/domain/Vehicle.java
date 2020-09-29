@@ -60,7 +60,7 @@ public abstract class Vehicle {
 	 */
 	public static boolean checkPlate(String plate) {
 		boolean plateOk = false;
-		final String regex = "^[0-9]{1,6}[ABCDEFGHIJKLMNOPQRSTUVWXYZ]{1,6}";
+		final String regex = "^[0-9]{4}[ABCDEFGHIJKLMNOPQRSTUVWXYZ]{2,3}";
 
 		final Pattern pattern = Pattern.compile(regex);
 		final Matcher matcher = pattern.matcher(plate.toUpperCase());
