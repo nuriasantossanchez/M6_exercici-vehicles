@@ -22,9 +22,9 @@ public class TallerController {
     /**
      * Crea un objeto de tipo Car, lo añade a la capa de persistencia y fija el total de ruedas
      * que corresponde al objeto Car
-     * @param matricula
-     * @param marca
-     * @param color
+     * @param matricula, parametro del constructor de la clase padre Vehicle que extiende la clase Car
+     * @param marca, parametro del constructor de la clase padre Vehicle que extiende la clase Car
+     * @param color, parametro del constructor de la clase padre Vehicle que extiende la clase Car
      * @throws Exception
      */
     public void createCar(String matricula, String marca, String color) throws Exception {
@@ -34,9 +34,9 @@ public class TallerController {
     }
 
     /**
-     * Llama al metodo checkPlate() implementado en la clase abstracta Vehicle, para ckekear si
+     * Llama al metodo staic checkPlate() implementado en la clase abstracta Vehicle, para ckekear si
      * una matricula es o no valida
-     * @param matricula
+     * @param matricula, valor a checkear
      * @return true si la matricula es valida, false si no lo es
      */
     public boolean checkPlate(String matricula){
@@ -53,14 +53,29 @@ public class TallerController {
      * @return String con la matricula generada valida
      */
     public String generaPlate() {
+
         return Vehicle.generaPlate();
+    }
+
+    /**
+     * Llama al metodo static checkDiameter implementado en la clase Wheel, para checkear si
+     * el diametro de una rueda cumple con los requisitos de tamaño mínimo y máximo establecidos
+     * @param diameter, valor a chekear
+     * @return true si el tamaños del diametro es valido, false si no lo es
+     */
+    public boolean checkDiameter(String diameter){
+        boolean diameterOk=true;
+        if(!Wheel.checkDiameter(diameter)){
+            diameterOk=false;
+        }
+        return diameterOk;
     }
 
     /**
      * Crea un objeto de tipo Wheel y lo añade 2 veces a la clase WheelsFactory.
      * Se utiliza para generar las 2 ruedas delantera y las 2 ruedas traseras
-     * @param marca
-     * @param diametro
+     * @param marca, parametro del constructor de la clase Wheel
+     * @param diametro, parametro del constructor de la clase Wheel
      * @throws Exception
      */
     public void createWheels(String marca, double diametro) throws Exception {
