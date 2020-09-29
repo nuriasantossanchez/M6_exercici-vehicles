@@ -14,7 +14,7 @@ public class Wheel {
 
 	/**
 	 * Checkea si el diametro de una rueda tiene una valor superior a 0.4 e inferior a 4
-	 * @param diameter, el valor a chekear
+	 * @param diameter, el valor a checkear
 	 * @return, true si el valor esta dentro del rango, false si no esta dentro del rango
 	 */
 	public static boolean checkDiameter(String diameter) {

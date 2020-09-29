@@ -22,9 +22,9 @@ public class TallerController {
     /**
      * Crea un objeto de tipo Car, lo añade a la capa de persistencia y fija el total de ruedas
      * que corresponde al objeto Car
-     * @param matricula
-     * @param marca
-     * @param color
+     * @param matricula, parametro del constructor de la clase padre Vehicle que extiende la clase Car
+     * @param marca, parametro del constructor de la clase padre Vehicle que extiende la clase Car
+     * @param color, parametro del constructor de la clase padre Vehicle que extiende la clase Car
      * @throws Exception
      */
     public void createCar(String matricula, String marca, String color) throws Exception {
@@ -74,8 +74,8 @@ public class TallerController {
     /**
      * Crea un objeto de tipo Wheel y lo añade 2 veces a la clase WheelsFactory.
      * Se utiliza para generar las 2 ruedas delantera y las 2 ruedas traseras
-     * @param marca
-     * @param diametro
+     * @param marca, parametro del constructor de la clase Wheel
+     * @param diametro, parametro del constructor de la clase Wheel
      * @throws Exception
      */
     public void createWheels(String marca, double diametro) throws Exception {
