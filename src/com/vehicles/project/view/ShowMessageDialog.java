@@ -8,7 +8,6 @@ import javax.swing.*;
 public class ShowMessageDialog extends Frame{
 
     ShowMessageDialog(String message) {
-
-        JOptionPane.showMessageDialog(frame, message,"Entrada de datos no permitida", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(Frame.getInstance(), message,"ENTRADA DE DATOS NO PERMITIDA", JOptionPane.WARNING_MESSAGE);
     }
 }

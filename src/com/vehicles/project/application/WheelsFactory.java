@@ -36,6 +36,7 @@ public class WheelsFactory {
     }
 
     public void setTotalWheels(int totalWheels) {
+
         this.totalWheels = totalWheels;
     }
 
