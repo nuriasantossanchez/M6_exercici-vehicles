@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class Car extends Vehicle {
 
+	public static final String VEHICLE_TYPE ="CAR";
+
 	public Car(String plate, String brand, String color) {
 
 		super(plate, brand, color);
@@ -24,9 +26,10 @@ public class Car extends Vehicle {
 	}
 
 	/**
-	 * Añade 2 ruedas a un listado de objetos Wheel, una será la de la dercha y la otra la de la izqda
+	 * Añade 2 ruedas a un listado de objetos Wheel de dimension 2, una será la rueda de la dercha
+	 * y la otra la de la izqda
 	 * @param wheels, listado de objetos de tipo Wheel
-	 * @throws Exception
+	 * @throws Exception, si el tamaño del listado pasado como parametro es distinto a 2
 	 */
 	public void addTwoWheels(List<Wheel> wheels) throws Exception {
 		if (wheels.size() != 2)

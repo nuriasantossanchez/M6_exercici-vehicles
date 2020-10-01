@@ -1,5 +1,6 @@
 package com.vehicles.project.application;
 
+import com.vehicles.project.domain.Bike;
 import com.vehicles.project.domain.Car;
 import com.vehicles.project.domain.Vehicle;
 import com.vehicles.project.domain.Wheel;
@@ -20,22 +21,68 @@ public class TallerController {
     }
 
     /**
-     * Crea un objeto de tipo Car, lo añade a la capa de persistencia y fija el total de ruedas
-     * que corresponde al objeto Car
-     * @param matricula, parametro del constructor de la clase padre Vehicle que extiende la clase Car
-     * @param marca, parametro del constructor de la clase padre Vehicle que extiende la clase Car
-     * @param color, parametro del constructor de la clase padre Vehicle que extiende la clase Car
+     * Crea un objeto de tipo Car o de tipo Bike en funcion del parametro vehicleType, lo añade a la capa de
+     * persistencia y fija el total de ruedas que tiene al objeto creado Car(4), Bike(2)
+     * @param matricula, parametro del constructor de la clase padre Vehicle, extendida por las clases Car y Bike
+     * @param marca, parametro del constructor de la clase padre Vehicle, extendida por las clases Car y Bike
+     * @param color, parametro del constructor de la clase padre Vehicle, extendida por las clases Car y Bike
+     * @param vehicleType, String para identificar el tipo de vehiculo, car o bike
      * @throws Exception
      */
-    public void createCar(String matricula, String marca, String color) throws Exception {
-        Vehicle car=new Car(matricula,marca,color);
-        repository.addVehicle(car);
-        wheelsFactory.setTotalWheels(WheelsFactory.TotalWheelsVehicle.CAR.getNumWheels());
+    public void createVehicle(String matricula, String marca, String color, String vehicleType) throws Exception {
+        if(vehicleType.toUpperCase().equals(Car.VEHICLE_TYPE)){
+            Vehicle car=new Car(matricula,marca,color);
+            repository.addVehicle(car);
+            wheelsFactory.setTotalWheels(WheelsFactory.TotalWheelsVehicle.CAR.getNumWheels());
+        }else if(vehicleType.toUpperCase().equals(Bike.VEHICLE_TYPE)){
+            Vehicle bike=new Bike(matricula,marca,color);
+            repository.addVehicle(bike);
+            wheelsFactory.setTotalWheels(WheelsFactory.TotalWheelsVehicle.BICKE.getNumWheels());
+        }
+
     }
 
     /**
-     * Llama al metodo staic checkPlate() implementado en la clase abstracta Vehicle, para ckekear si
-     * una matricula es o no valida
+     * Crea un objeto de tipo Wheel y lo añade 1 ó 2 veces al listado de objetos Wheel de la clase
+     * WheelsFactory, en funcion de si son ruedas para un objeto tipo Car(crea 2 ruedas delanteras o traseras)
+     * o tipo Bike(crea 1 rueda delantera o trasera)
+     * @param marca, parametro del constructor de la clase Wheel
+     * @param diametro, parametro del constructor de la clase Wheel
+     * @param vehicleType, String para identificar el tipo de vehiculo, car o bike
+     * @throws Exception
+     */
+    public void createWheel(String marca, double diametro, String vehicleType) throws Exception {
+        Wheel wheel = new Wheel(marca,diametro);
+        if(vehicleType.toUpperCase().equals(Car.VEHICLE_TYPE)){
+            wheelsFactory.addWheel(wheel);
+            wheelsFactory.addWheel(wheel);
+        }else if(vehicleType.toUpperCase().equals(Bike.VEHICLE_TYPE)){
+            wheelsFactory.addWheel(wheel);
+        }
+    }
+
+    /**
+     * Añade a un objeto hijo de la clase vehiculo, las ruedas delanteras y traseras, en funcion del parametro
+     * vehicleType añade 4 ruedas si el objeto es de tipo Car 2 ruedas si es de tipo Bike
+     * @param vehicleType, String para identificar el tipo de vehiculo, car o bike
+     * @throws Exception
+     */
+    public void addWheelsVehicle(String vehicleType) throws Exception {
+        if(vehicleType.toUpperCase().equals(Car.VEHICLE_TYPE)){
+            Car currentCar= (Car) repository.getCurrentVehicle();
+            currentCar.addWheels(wheelsFactory.getFrontWheels(), wheelsFactory.getBackWheels());
+            wheelsFactory.clearWheels();
+        }else if(vehicleType.toUpperCase().equals(Bike.VEHICLE_TYPE)){
+            Bike currentBike= (Bike) repository.getCurrentVehicle();
+            currentBike.addWheels(wheelsFactory.getFrontWheels(), wheelsFactory.getBackWheels());
+            wheelsFactory.clearWheels();
+        }
+
+    }
+
+    /**
+     * Llama al metodo staic checkPlate() implementado en la clase abstracta Vehicle, para ckeckear si
+     * una matricula es o no valida. Se aplica tanto a la subcalse Car como a la subclase Bike
      * @param matricula, valor a checkear
      * @return true si la matricula es valida, false si no lo es
      */
@@ -49,7 +96,7 @@ public class TallerController {
 
     /**
      * Llama al metodo generaPlate() implemnetado en la clase abstracta Vehicle, para generar
-     * una matricula valida de forma aleatoria
+     * una matricula valida de forma aleatoria.Se aplica tanto a la subcalse Car como a la subclase Bike
      * @return String con la matricula generada valida
      */
     public String generaPlate() {
@@ -69,29 +116,6 @@ public class TallerController {
             diameterOk=false;
         }
         return diameterOk;
-    }
-
-    /**
-     * Crea un objeto de tipo Wheel y lo añade 2 veces a la clase WheelsFactory.
-     * Se utiliza para generar las 2 ruedas delantera y las 2 ruedas traseras
-     * @param marca, parametro del constructor de la clase Wheel
-     * @param diametro, parametro del constructor de la clase Wheel
-     * @throws Exception
-     */
-    public void createWheels(String marca, double diametro) throws Exception {
-        Wheel wheel = new Wheel(marca,diametro);
-        wheelsFactory.addWheel(wheel);
-        wheelsFactory.addWheel(wheel);
-    }
-
-    /**
-     * Añade al vehiculo de tipo Car dos listado, uno con las ruedas delanteras y otro con las traseras
-     * @throws Exception
-     */
-    public void addWheelsVehicle() throws Exception {
-        Car currentCar= (Car) repository.getCurrentVehicle();
-        currentCar.addWheels(wheelsFactory.getFrontWheels(), wheelsFactory.getBackWheels());
-        wheelsFactory.clearWheels();
     }
 
     /**

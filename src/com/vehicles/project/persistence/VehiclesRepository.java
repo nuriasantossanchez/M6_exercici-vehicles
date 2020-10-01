@@ -39,11 +39,12 @@ public class VehiclesRepository {
     }
 
     /**
-     * Devuleve el ultimo objeto hijo de la clase Vehicle, que ha sido añadido al listado de Vehicles
+     * Obtiene el objeto Car o Bike con el que el usuario esta interactuando en cada momento
      * @return la ultima implementacion concreta de la clase abstracta Vehicle(Car o Bike), que ha sido
-     * añadida al repositorio
+     * añadida al listado de Vehicles o repositorio
      */
     public Vehicle getCurrentVehicle(){
+
         return vehicles.get(getAllVehicles().size()-1);
     }
 
